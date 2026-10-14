@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07101f">
+<title>Atlas ENEM Premium — Simulado no celular</title>
+<meta name="description" content="Treine para o ENEM pelo celular com questões por área, cronômetro, sequência diária, revisão de erros e resultado final.">
+<style>
+:root{
+  --bg:#050914; --bg2:#081126; --card:#0d1830; --card2:#101f3d;
+  --line:#223b66; --text:#f7fbff; --muted:#a9b9d2;
+  --blue:#2e7cff; --cyan:#35d7ff; --gold:#f7c955; --green:#31d6a1;
+  --red:#ff6578; --shadow:0 28px 90px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--text); background:
+  radial-gradient(circle at 20% 0%,rgba(46,124,255,.20),transparent 34%),
+  radial-gradient(circle at 90% 16%,rgba(53,215,255,.12),transparent 28%),
+  linear-gradient(180deg,#050914 0%,#07101f 54%,#040710 100%);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,calc(100% - 34px));margin:auto}
+.notice{background:linear-gradient(90deg,#123569,#0c5f7a);font-size:13px;text-align:center;padding:9px 12px;color:#dff8ff}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.02em}
+.brand img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 0 28px rgba(53,215,255,.16)}
+.nav .micro{font-size:12px;color:var(--muted);font-weight:600}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:60px 0 80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #315688;background:#0f2142;border-radius:999px;padding:8px 12px;color:#9feeff;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+h1{font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-.055em;margin:18px 0 18px}
+.grad{background:linear-gradient(90deg,#fff 10%,#7feaff 48%,#4e8eff 82%);-webkit-background-clip:text;color:transparent}
+.hero p{font-size:19px;line-height:1.6;color:#c6d4e8;max-width:680px}
+.points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:25px 0}
+.point{display:flex;gap:9px;align-items:center;color:#e4eefb;font-size:14px}
+.tick{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:#12375a;color:#72f1c9;font-weight:1000}
+.cta{display:inline-flex;justify-content:center;align-items:center;gap:10px;border:none;border-radius:16px;padding:17px 22px;font-size:17px;font-weight:950;background:linear-gradient(135deg,#2d7fff,#35d7ff);color:white;box-shadow:0 18px 45px rgba(46,124,255,.28);cursor:pointer}
+.cta:hover{transform:translateY(-1px)}
+.cta.gold{background:linear-gradient(135deg,#f7ce62,#ee9f28);color:#111a28;box-shadow:0 18px 45px rgba(238,159,40,.18)}
+.subcta{display:block;margin-top:10px;color:#8095b5;font-size:12px}
+.hero-visual{position:relative;min-height:600px;display:grid;place-items:center}
+.glow{position:absolute;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,#2d7fff42,transparent 65%);filter:blur(4px)}
+.phone{
+ width:305px; border:9px solid #121a29; border-radius:48px; background:#07152c; padding:13px;
+ box-shadow:0 32px 90px #0009,0 0 0 1px #5371a5; transform:rotate(4deg); position:relative; z-index:2;
+}
+.notch{width:105px;height:22px;border-radius:0 0 17px 17px;background:#0c111b;margin:-13px auto 13px}
+.apphead{display:flex;align-items:center;gap:10px}
+.apphead img{width:44px;height:44px;border-radius:50%}
+.apphead strong{font-size:15px}
+.phone .hello{font-size:23px;font-weight:950;margin:22px 0 4px}
+.phone .small{font-size:11px;color:#8ca4c6}
+.primary-card{margin-top:14px;border:1px solid #225995;border-radius:18px;padding:15px;background:linear-gradient(150deg,#102851,#0c1933)}
+.primary-card b{display:block;margin-bottom:5px}
+.fakebtn{margin-top:12px;border-radius:12px;padding:11px;text-align:center;font-weight:900;background:#2679ff}
+.subjects{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.subject{border-radius:14px;padding:12px;background:#101f3d;border:1px solid #203b68;font-size:11px}
+.subject strong{font-size:13px;display:block;margin-bottom:3px}
+.floating{position:absolute;z-index:3;padding:13px 16px;border-radius:16px;background:#0d1830;border:1px solid #254a7c;box-shadow:0 22px 60px #0008;font-size:13px;font-weight:850}
+.f1{left:0;top:130px}.f2{right:0;bottom:120px}
+.floating span{color:#6cecc7}
+.section{padding:78px 0}
+.center{text-align:center}
+.section h2{font-size:clamp(32px,4vw,52px);letter-spacing:-.04em;margin:10px auto 14px;max-width:850px}
+.section .lead{color:#aebed4;font-size:17px;line-height:1.65;max-width:760px;margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:35px}
+.card{background:linear-gradient(180deg,#0e1a33,#091326);border:1px solid #20385e;border-radius:24px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.16)}
+.icon{width:47px;height:47px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#153b76,#11667c);font-size:22px;margin-bottom:16px}
+.card h3{font-size:19px;margin:0 0 8px}.card p{color:#9fb1ca;line-height:1.55;margin:0}
+.problem{background:linear-gradient(180deg,#090d18,#0a1325)}
+.problem-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.list{display:grid;gap:11px}
+.listitem{display:flex;gap:13px;padding:16px;background:#0d1930;border:1px solid #213a61;border-radius:17px}
+.listitem b{display:block;margin-bottom:4px}.listitem p{margin:0;color:#9eb0c7;font-size:14px;line-height:1.45}
+.phone2{width:300px;margin:auto;border:9px solid #141b2b;border-radius:44px;padding:15px;background:#071225;box-shadow:var(--shadow)}
+.qtag{font-size:11px;color:#63ddff;text-transform:uppercase;font-weight:850}
+.qtitle{font-size:17px;line-height:1.4;font-weight:850;margin:10px 0}
+.option{border:1px solid #294870;border-radius:12px;padding:10px 11px;margin:8px 0;font-size:12px;color:#d9e4f3}
+.option.on{border-color:#36dcff;background:#12304a}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}
+.step{position:relative;padding:22px 18px;border-radius:20px;background:#0d1930;border:1px solid #223c66}
+.num{font-size:12px;font-weight:950;color:#65e5ff;letter-spacing:.08em}
+.step h3{margin:9px 0 8px;font-size:17px}.step p{margin:0;color:#95a8c2;font-size:14px;line-height:1.45}
+.result-demo{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;margin-top:34px;align-items:center}
+.scorecard{background:linear-gradient(145deg,#112653,#0b1933);border:1px solid #295086;border-radius:28px;padding:30px;text-align:center}
+.score{font-size:80px;font-weight:1000;letter-spacing:-.06em;background:linear-gradient(90deg,#fff,#6cecff,#5e8dff);-webkit-background-clip:text;color:transparent}
+.scorecard p{color:#aac0d9}
+.bars{display:grid;gap:13px}
+.barrow{background:#0d1930;border:1px solid #223a60;border-radius:16px;padding:15px}
+.barhead{display:flex;justify-content:space-between;font-size:13px;font-weight:800}
+.bar{height:8px;border-radius:99px;background:#1b2a44;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#2f80ff,#39d9ff,#36d49e)}
+.offer-wrap{padding:25px;border-radius:30px;background:linear-gradient(150deg,#101d39,#081326);border:1px solid #28476f;box-shadow:var(--shadow)}
+.offer{display:grid;grid-template-columns:1fr .9fr;gap:30px;align-items:center}
+.price-old{text-decoration:line-through;color:#7f8da5;font-size:17px}
+.price{font-size:68px;font-weight:1000;letter-spacing:-.06em;color:#6ee6ff;margin:4px 0}
+.price small{font-size:20px;letter-spacing:0}
+.secure{font-size:12px;color:#87a1bd;margin-top:12px}
+.receive{display:grid;gap:10px}.receive div{padding:13px;border:1px solid #263e63;background:#0b172d;border-radius:14px;font-size:14px}
+.guarantee{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-top:18px;padding:22px;border-radius:22px;background:#111929;border:1px solid #31415a}
+.seven{font-size:68px;font-weight:1000;color:var(--gold)}
+.faq{max-width:900px;margin:32px auto 0;display:grid;gap:10px}
+details{background:#0c172c;border:1px solid #22385b;border-radius:16px;padding:16px 18px}
+summary{cursor:pointer;font-weight:850}
+details p{color:#9fb2ca;line-height:1.55;margin:12px 0 0;font-size:14px}
+.footer{padding:35px 0 110px;text-align:center;color:#7287a7;font-size:12px}
+.sticky{display:none;position:fixed;z-index:20;left:10px;right:10px;bottom:10px;padding:10px;background:#071222e8;backdrop-filter:blur(10px);border:1px solid #27436c;border-radius:18px;box-shadow:0 20px 60px #000a}
+.sticky .cta{width:100%;padding:15px}
+@media(max-width:850px){
+ .hero,.problem-grid,.offer,.result-demo{grid-template-columns:1fr}
+ .hero{padding-top:28px;gap:28px}.hero-visual{min-height:540px}
+ .cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}
+ .problem-grid{gap:24px}.offer{text-align:center}.receive{text-align:left}
+ .sticky{display:block}
+}
+@media(max-width:520px){
+ .container{width:min(100% - 24px,1160px)}
+ .nav .micro{display:none}
+ h1{font-size:45px}
+ .points{grid-template-columns:1fr}
+ .hero-visual{min-height:500px}.phone{width:275px}
+ .f1{left:-4px;top:72px}.f2{right:-2px;bottom:56px}
+ .steps{grid-template-columns:1fr}
+ .price{font-size:58px}
+ .guarantee{grid-template-columns:1fr;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="notice">⚡ Reta final do ENEM: treine pelo celular, revise seus erros e acompanhe sua evolução.</div>
+
+<header class="container nav">
+  <div class="brand">
+    <img src="assets/logo-atlas-enem.png" alt="Atlas ENEM Premium">
+    <div>ATLAS ENEM <span style="color:var(--cyan)">PREMIUM</span></div>
+  </div>
+  <div class="micro">Simulado educacional independente • Mobile</div>
+</header>
+
+<main>
+<section class="container hero">
+  <div>
+    <div class="eyebrow">🎯 Treino inteligente para a reta final</div>
+    <h1>Descubra agora <span class="grad">onde você está errando</span> antes do ENEM.</h1>
+    <p>Um simulado mobile para você treinar por área, controlar seu tempo, revisar as questões que errou e acompanhar sua evolução sem planilhas, PDFs espalhados ou estudo no escuro.</p>
+
+    <div class="points">
+      <div class="point"><span class="tick">✓</span> 12 questões por área</div>
+      <div class="point"><span class="tick">✓</span> Simulado completo com 48 questões</div>
+      <div class="point"><span class="tick">✓</span> Cronômetro durante o treino</div>
+      <div class="point"><span class="tick">✓</span> Revisão das respostas no final</div>
+      <div class="point"><span class="tick">✓</span> Sequência diária de estudos</div>
+      <div class="point"><span class="tick">✓</span> Resultado salvo no aparelho</div>
+    </div>
+
+    <a class="cta" href="https://pay.kiwify.com.br/EyYIoac">QUERO TREINAR AGORA →</a>
+    <span class="subcta">Acesso pelo celular • Não precisa baixar arquivo para usar</span>
+  </div>
+
+  <div class="hero-visual">
+    <div class="glow"></div>
+    <div class="floating f1">⏱️ <span>Cronômetro</span><br>em cada simulado</div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="apphead">
+        <img src="assets/logo-atlas-enem.png" alt="">
+        <div><strong>Atlas ENEM</strong><div class="small">Painel de estudos</div></div>
+      </div>
+      <div class="hello">Olá, estudante 👋</div>
+      <div class="small">Rumo à sua evolução.</div>
+      <div class="primary-card">
+        <b>Simulado ENEM</b>
+        <div class="small">Teste seus conhecimentos por área.</div>
+        <div class="fakebtn">▶ Iniciar simulado</div>
+      </div>
+      <div class="subjects">
+        <div class="subject"><strong>🗣 Linguagens</strong>12 questões</div>
+        <div class="subject"><strong>📐 Matemática</strong>12 questões</div>
+        <div class="subject"><strong>🌍 Humanas</strong>12 questões</div>
+        <div class="subject"><strong>🧪 Natureza</strong>12 questões</div>
+      </div>
+    </div>
+    <div class="floating f2">🔥 Sequência diária<br><span>mantenha o ritmo</span></div>
+  </div>
+</section>
+
+<section class="section problem">
+ <div class="container problem-grid">
+   <div>
+     <div class="eyebrow">A diferença está na revisão</div>
+     <h2>Estudar muito não basta se você não sabe onde está errando.</h2>
+     <p class="lead" style="text-align:left;margin-left:0">O Atlas ENEM transforma um treino simples em um painel claro de desempenho.</p>
+   </div>
+   <div class="list">
+     <div class="listitem"><div>✓</div><div><b>Descubra suas áreas mais fracas</b><p>Veja o desempenho separado por Linguagens, Humanas, Natureza e Matemática.</p></div></div>
+     <div class="listitem"><div>✓</div><div><b>Revise o erro imediatamente</b><p>No final, o aplicativo mostra o que você acertou, errou e a explicação da resposta.</p></div></div>
+     <div class="listitem"><div>✓</div><div><b>Refaça apenas as erradas</b><p>Treine justamente o que precisa melhorar em vez de começar tudo de novo.</p></div></div>
+     <div class="listitem"><div>✓</div><div><b>Crie consistência</b><p>Acompanhe sua sequência diária e mantenha a rotina de questões.</p></div></div>
+   </div>
+ </div>
+</section>
+
+<section class="container section center">
+  <div class="eyebrow">Tudo dentro do celular</div>
+  <h2>Um app simples de usar, mas feito para você estudar com método.</h2>
+  <p class="lead">Abra pelo navegador, escolha a área e comece. O resultado aparece só no final, como deve ser em um simulado.</p>
+  <div class="cards">
+    <div class="card"><div class="icon">🧠</div><h3>Treino por área</h3><p>Escolha uma matéria específica e foque no conteúdo que mais precisa de atenção.</p></div>
+    <div class="card"><div class="icon">⏱</div><h3>Cronômetro real</h3><p>Acompanhe quanto tempo leva para concluir cada sessão e melhore seu ritmo.</p></div>
+    <div class="card"><div class="icon">📊</div><h3>Resultado completo</h3><p>Veja percentual de acertos, desempenho por área e uma faixa simulada para orientação.</p></div>
+    <div class="card"><div class="icon">🔁</div><h3>Refazer erros</h3><p>Um botão separa somente as questões erradas para você atacar seus pontos fracos.</p></div>
+    <div class="card"><div class="icon">🔥</div><h3>Sequência diária</h3><p>O app registra seus dias de estudo e incentiva a constância até a prova.</p></div>
+    <div class="card"><div class="icon">📱</div><h3>Feito para mobile</h3><p>Use no Safari ou Chrome e adicione à tela inicial para ter experiência de aplicativo.</p></div>
+  </div>
+</section>
+
+<section class="section problem">
+ <div class="container problem-grid">
+   <div class="phone2">
+     <div class="qtag">Matemática • questão 8 de 12</div>
+     <div class="qtitle">Em uma urna há 3 bolas vermelhas e 2 azuis. Qual é a probabilidade de retirar uma bola azul?</div>
+     <div class="option">A) 1/5</div>
+     <div class="option on">B) 2/5</div>
+     <div class="option">C) 3/5</div>
+     <div class="option">D) 2/3</div>
+     <div class="option">E) 3/2</div>
+     <div class="small" style="margin-top:12px">Você só vê o resultado no final.</div>
+   </div>
+   <div>
+     <div class="eyebrow">Sem spoiler de resposta</div>
+     <h2>Você responde primeiro. O aplicativo analisa depois.</h2>
+     <p class="lead" style="text-align:left;margin-left:0">Nada de marcar uma alternativa e receber a resposta na mesma hora. Você mantém a concentração até concluir o bloco e recebe a análise no final.</p>
+     <a class="cta" href="https://pay.kiwify.com.br/EyYIoac">COMEÇAR MEU TREINO →</a>
+   </div>
+ </div>
+</section>
+
+<section class="container section center">
+ <div class="eyebrow">Como funciona</div>
+ <h2>Você começa a estudar em poucos minutos.</h2>
+ <div class="steps">
+  <div class="step"><div class="num">PASSO 01</div><h3>Acesse pelo celular</h3><p>Abra o link do Atlas ENEM pelo navegador depois da compra.</p></div>
+  <div class="step"><div class="num">PASSO 02</div><h3>Escolha uma área</h3><p>Treine uma matéria específica ou escolha o simulado completo.</p></div>
+  <div class="step"><div class="num">PASSO 03</div><h3>Responda no seu ritmo</h3><p>O cronômetro acompanha a sessão enquanto você resolve as questões.</p></div>
+  <div class="step"><div class="num">PASSO 04</div><h3>Veja e revise</h3><p>Receba seu resultado e refaça apenas as questões que errou.</p></div>
+ </div>
+</section>
+
+<section class="section problem">
+ <div class="container">
+  <div class="center">
+   <div class="eyebrow">Sua evolução fica visível</div>
+   <h2>Uma tela final que mostra o que fazer a seguir.</h2>
+   <p class="lead">Sem promessa de nota oficial: você recebe um retrato claro do seu desempenho no treino.</p>
+  </div>
+  <div class="result-demo">
+   <div class="scorecard">
+     <div class="small">Resultado do simulado</div>
+     <div class="score">75%</div>
+     <strong>🥇 Excelente ritmo</strong>
+     <p>9 de 12 acertos • continue revisando os pontos em que errou.</p>
+   </div>
+   <div class="bars">
+    <div class="barrow"><div class="barhead"><span>Linguagens</span><span>83%</span></div><div class="bar"><i style="width:83%"></i></div></div>
+    <div class="barrow"><div class="barhead"><span>Ciências Humanas</span><span>75%</span></div><div class="bar"><i style="width:75%"></i></div></div>
+    <div class="barrow"><div class="barhead"><span>Ciências da Natureza</span><span>67%</span></div><div class="bar"><i style="width:67%"></i></div></div>
+    <div class="barrow"><div class="barhead"><span>Matemática</span><span>75%</span></div><div class="bar"><i style="width:75%"></i></div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="container section center">
+ <div class="eyebrow">Para quem é</div>
+ <h2>Ideal para quem quer transformar ansiedade em treino.</h2>
+ <div class="cards">
+   <div class="card"><div class="icon">🎓</div><h3>Quem fará o ENEM</h3><p>Para estudantes que querem testar conhecimentos antes da prova.</p></div>
+   <div class="card"><div class="icon">📚</div><h3>Quem está revisando</h3><p>Use como complemento da rotina para identificar lacunas e revisar erros.</p></div>
+   <div class="card"><div class="icon">⚡</div><h3>Quem tem pouco tempo</h3><p>Abra no celular e faça uma área por vez, sem depender de material espalhado.</p></div>
+ </div>
+</section>
+
+<section id="oferta" class="container section">
+ <div class="offer-wrap">
+  <div class="offer">
+    <div>
+      <div class="eyebrow">Acesso ao Atlas ENEM Premium</div>
+      <h2 style="margin-left:0">Seu simulado mobile para a reta final.</h2>
+      <div class="receive">
+        <div>✓ 4 áreas de conhecimento</div>
+        <div>✓ 12 questões por área — 48 no simulado completo</div>
+        <div>✓ Cronômetro e acompanhamento de sessões</div>
+        <div>✓ Revisão detalhada das respostas</div>
+        <div>✓ Botão para refazer apenas as erradas</div>
+        <div>✓ Sequência diária salva no aparelho</div>
+      </div>
+    </div>
+    <div class="center">
+      <div class="price-old">Valor de lançamento</div>
+      <div class="price"><small>R$</small> 19,90</div>
+      <div style="color:#c2d0e3;margin-bottom:10px">Pagamento único</div>
+      <a class="cta gold checkout-button" href="https://pay.kiwify.com.br/EyYIoac">QUERO MEU ACESSO AGORA</a>
+      <div class="secure">🔒 Compra segura • Acesso após confirmação do pagamento</div>
+    </div>
+  </div>
+  <div class="guarantee">
+    <div class="seven">7</div>
+    <div>
+      <h3 style="font-size:24px;margin:0 0 7px">7 dias de garantia</h3>
+      <div style="color:#a9b9cd;line-height:1.5">Você pode testar o produto dentro do prazo de garantia aplicável à oferta. Consulte as condições apresentadas no checkout.</div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section class="container section center">
+ <div class="eyebrow">Dúvidas frequentes</div>
+ <h2>Antes de começar, veja isso.</h2>
+ <div class="faq">
+   <details><summary>O Atlas ENEM é oficial do Inep?</summary><p>Não. É uma ferramenta educacional independente de treino. Não possui vínculo com o Inep ou com o Ministério da Educação.</p></details>
+   <details><summary>As questões são exatamente as que vão cair na prova?</summary><p>Não. Ninguém pode saber antecipadamente quais questões cairão. O aplicativo usa questões de treino inspiradas nas áreas e competências cobradas no exame.</p></details>
+   <details><summary>A pontuação é a mesma nota oficial do ENEM?</summary><p>Não. A nota oficial utiliza a TRI. O Atlas mostra acertos, percentual e uma faixa simulada apenas para orientação.</p></details>
+   <details><summary>Preciso instalar algum aplicativo?</summary><p>Não. Você pode usar pelo navegador do celular. Se quiser, pode adicionar o link à tela inicial para uma experiência parecida com aplicativo.</p></details>
+   <details><summary>Meu progresso fica salvo?</summary><p>Sim. O progresso e alguns dados de uso são salvos localmente no navegador/aparelho utilizado.</p></details>
+ </div>
+</section>
+</main>
+
+<footer class="container footer">
+ Atlas ENEM Premium • Produto educacional independente • ENEM é uma avaliação administrada pelo Inep. Este produto não é oficial nem afiliado ao Inep.
+</footer>
+
+<div class="sticky">
+ <a class="cta gold checkout-button" href="https://pay.kiwify.com.br/EyYIoac">ACESSAR POR R$ 19,90 →</a>
+</div>
+
+<script>
+// Quando você tiver o link do checkout Kiwify, cole-o entre as aspas abaixo.
+// Exemplo: const CHECKOUT_URL = "https://pay.kiwify.com.br/XXXXXXX";
+const CHECKOUT_URL = "https://pay.kiwify.com.br/EyYIoac";
+
+document.querySelectorAll(".checkout-button").forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    if(CHECKOUT_URL){
+      e.preventDefault();
+      window.location.href = CHECKOUT_URL;
+    }
+  });
+});
+</script>
+</body>
+</html>
