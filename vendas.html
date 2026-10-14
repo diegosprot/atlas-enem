@@ -127,14 +127,31 @@ details p{color:#9fb2ca;line-height:1.55;margin:12px 0 0;font-size:14px}
  .price{font-size:58px}
  .guarantee{grid-template-columns:1fr;text-align:center}
 }
+ .logo-mark{display:inline-flex;align-items:center;justify-content:center;flex:0 0 48px;width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#397bff,#35d7ff);color:white;font-weight:1000;font-size:28px;letter-spacing:-.05em;box-shadow:0 7px 24px rgba(53,215,255,.22)}
+ .logo-mark-small{flex-basis:44px;width:44px;height:44px;border-radius:14px;font-size:24px}
+ .offer-flash{display:inline-flex;align-items:center;gap:6px;background:#183655;border:1px solid #3176a4;color:#92edff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:900;letter-spacing:.055em;text-transform:uppercase}
+ .offer-note{font-size:14px;color:#c2d0e3;margin:8px 0 10px}
+
+/* Barra compacta de oferta: acompanha a rolagem */
+.atlas-offer-bar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:9px;background:#07152df5;border-bottom:1px solid #4476ba;box-shadow:0 7px 30px #0007;padding:8px max(12px,env(safe-area-inset-right));backdrop-filter:blur(12px);font-size:12px}
+.atlas-offer-bar .a-label{color:#b6cae7;font-size:10px;line-height:1.15}
+.atlas-offer-bar .a-price{font-size:19px;font-weight:950;color:#f7c955;white-space:nowrap}
+.atlas-offer-bar .a-cta{background:#f7c955;color:#101b2b;border-radius:10px;padding:10px 12px;font-weight:900;text-align:center;white-space:nowrap;font-size:11px}
+body{padding-top:55px}
+@media(max-width:520px){.atlas-offer-bar{padding:7px 10px;gap:6px}.atlas-offer-bar .a-price{font-size:18px}.atlas-offer-bar .a-cta{font-size:10px;padding:10px 9px}}
+
 </style>
 </head>
 <body>
+<div class="atlas-offer-bar" role="region" aria-label="Oferta Atlas ENEM">
+ <div><div class="a-label">OFERTA DE LANÇAMENTO</div><div class="a-price">R$ 37,00</div></div>
+ <a class="a-cta" href="https://pay.kiwify.com.br/EyYIoac">GARANTIR ACESSO →</a>
+</div>
 <div class="notice">⚡ Reta final do ENEM: treine pelo celular, revise seus erros e acompanhe sua evolução.</div>
 
 <header class="container nav">
   <div class="brand">
-    <img src="assets/logo-atlas-enem.png" alt="Atlas ENEM Premium">
+    <span class="logo-mark" aria-hidden="true">A</span>
     <div>ATLAS ENEM <span style="color:var(--cyan)">PREMIUM</span></div>
   </div>
   <div class="micro">Simulado educacional independente • Mobile</div>
@@ -166,7 +183,7 @@ details p{color:#9fb2ca;line-height:1.55;margin:12px 0 0;font-size:14px}
     <div class="phone">
       <div class="notch"></div>
       <div class="apphead">
-        <img src="assets/logo-atlas-enem.png" alt="">
+        <span class="logo-mark logo-mark-small" aria-hidden="true">A</span>
         <div><strong>Atlas ENEM</strong><div class="small">Painel de estudos</div></div>
       </div>
       <div class="hello">Olá, estudante 👋</div>
@@ -299,11 +316,11 @@ details p{color:#9fb2ca;line-height:1.55;margin:12px 0 0;font-size:14px}
       </div>
     </div>
     <div class="center">
-      <div class="price-old">Valor de lançamento</div>
-      <div class="price"><small>R$</small> 19,90</div>
-      <div style="color:#c2d0e3;margin-bottom:10px">Pagamento único</div>
+      <div class="offer-flash">⚡ Oferta especial de acesso</div>
+      <div class="price"><small>R$</small> 37,00</div>
+      <div class="offer-note">Pagamento único • sem mensalidade</div>
       <a class="cta gold checkout-button" href="https://pay.kiwify.com.br/EyYIoac">QUERO MEU ACESSO AGORA</a>
-      <div class="secure">🔒 Compra segura • Acesso após confirmação do pagamento</div>
+      <div class="secure">🔒 Compra segura • Acesso pela Kiwify após confirmação do pagamento</div>
     </div>
   </div>
   <div class="guarantee">
@@ -334,7 +351,7 @@ details p{color:#9fb2ca;line-height:1.55;margin:12px 0 0;font-size:14px}
 </footer>
 
 <div class="sticky">
- <a class="cta gold checkout-button" href="https://pay.kiwify.com.br/EyYIoac">ACESSAR POR R$ 19,90 →</a>
+ <a class="cta gold checkout-button" href="https://pay.kiwify.com.br/EyYIoac">ACESSAR POR R$ 37,00 →</a>
 </div>
 
 <script>
@@ -351,5 +368,6 @@ document.querySelectorAll(".checkout-button").forEach(btn=>{
   });
 });
 </script>
+
 </body>
 </html>
